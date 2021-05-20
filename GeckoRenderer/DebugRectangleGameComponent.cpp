@@ -28,7 +28,7 @@ void DebugRectangleGameComponent::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(game->Display->hWnd, L"MiniTri.fx", L"Missing Shader File", MB_OK);
+			MessageBox(game->Display->handle, L"MiniTri.fx", L"Missing Shader File", MB_OK);
 		}
 
 		exit(1);
@@ -51,7 +51,7 @@ void DebugRectangleGameComponent::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(game->Display->hWnd, L"MiniTri.fx", L"Missing Shader File", MB_OK);
+			MessageBox(game->Display->handle, L"MiniTri.fx", L"Missing Shader File", MB_OK);
 		}
 
 		exit(1);

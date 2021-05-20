@@ -61,12 +61,7 @@ void Game::Run(int windowWidth, int windowHeight)
 
 	// Loop until there is a quit message from the window or the user.
 	while (!isExitRequested) {
-		// Handle the windows messages.
-		while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
+		Display->ProcessAllMessages();
 		UpdateInternal();
 	}
 
@@ -199,7 +194,7 @@ void Game::PrepareResources()
 	swapDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	swapDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	swapDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapDesc.OutputWindow = Display->hWnd;
+	swapDesc.OutputWindow = Display->handle;
 	swapDesc.Windowed = true;
 	swapDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	swapDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -223,9 +218,6 @@ void Game::PrepareResources()
 	ZCHECK(res);
 
 	CreateBackBuffer();
-
-	res = Device->CreateRenderTargetView(backBuffer, nullptr, &RenderView);
-	ZCHECK(res);
 
 	SwapChain->QueryInterface<IDXGISwapChain1>(&SwapChain1);
 	Context->QueryInterface(IID_ID3DUserDefinedAnnotation, (void**)&DebugAnnotation);
@@ -288,5 +280,8 @@ void Game::DestroyResources()
 void Game::CreateBackBuffer()
 {
 	HRESULT res = SwapChain->GetBuffer(0, IID_ID3D11Texture2D, (void**)&backBuffer);
+	ZCHECK(res);
+	
+	res = Device->CreateRenderTargetView(backBuffer, nullptr, &RenderView);
 	ZCHECK(res);
 }

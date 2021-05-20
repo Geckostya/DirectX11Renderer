@@ -177,9 +177,33 @@
     <ClInclude Include="DisplayWin.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="Includes\Audio.h" />
+    <ClInclude Include="Includes\BufferHelpers.h" />
+    <ClInclude Include="Includes\CommonStates.h" />
+    <ClInclude Include="Includes\DDSTextureLoader.h" />
+    <ClInclude Include="Includes\DirectXHelpers.h" />
+    <ClInclude Include="Includes\Effects.h" />
+    <ClInclude Include="Includes\GamePad.h" />
+    <ClInclude Include="Includes\GeometricPrimitive.h" />
+    <ClInclude Include="Includes\GraphicsMemory.h" />
+    <ClInclude Include="Includes\Keyboard.h" />
+    <ClInclude Include="Includes\Model.h" />
+    <ClInclude Include="Includes\Mouse.h" />
+    <ClInclude Include="Includes\PostProcess.h" />
+    <ClInclude Include="Includes\PrimitiveBatch.h" />
+    <ClInclude Include="Includes\ScreenGrab.h" />
+    <ClInclude Include="Includes\SimpleMath.h" />
+    <ClInclude Include="Includes\SpriteBatch.h" />
+    <ClInclude Include="Includes\SpriteFont.h" />
+    <ClInclude Include="Includes\VertexTypes.h" />
+    <ClInclude Include="Includes\WICTextureLoader.h" />
+    <ClInclude Include="Includes\XboxDDSTextureLoader.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DebugRectangleGameComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Includes\SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

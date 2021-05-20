@@ -7,6 +7,8 @@ class DisplayWin
 public:
 	DisplayWin(std::wstring& windowName, int width, int height, WNDPROC wndProc);
 	~DisplayWin();
+	bool ProcessMessage() const;
+	void ProcessAllMessages() const;
 
 public:
 	int ClientWidth = 0;
@@ -14,7 +16,7 @@ public:
 
 public:
 	HINSTANCE   hInstance = nullptr;
-	HWND        hWnd = nullptr;
+	HWND        handle = nullptr;
 	WNDCLASSEX  wc = {};
 
 	static HMODULE Module;

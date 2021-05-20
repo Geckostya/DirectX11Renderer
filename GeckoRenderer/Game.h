@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include "DisplayWin.h"
+#include "InputDevice.h"
 #include "pch.h"
 
 class GameComponent;
@@ -21,6 +22,7 @@ public:
 	std::chrono::time_point<std::chrono::steady_clock>* StartTime;
 	std::chrono::time_point<std::chrono::steady_clock>* PrevTime;
 	std::chrono::duration<long>* TotalTime;
+	InputDevice inputDevice;
 
 public:
 	Microsoft::WRL::ComPtr<ID3D11Device> Device;

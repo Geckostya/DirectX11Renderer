@@ -81,82 +81,6 @@ void Game::RestoreTargets()
 {
 }
 
-LRESULT Game::MessageHandler(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
-{
-	switch (umessage)
-	{
-		// Check if the window is being destroyed.
-	case WM_DESTROY:
-	case WM_CLOSE:
-	{
-		PostQuitMessage(0);
-		Exit();
-		return 0;
-	}
-
-	case WM_SIZE:
-	{
-		std::cout << "Width " << LOWORD(lparam) << " Height " << HIWORD(lparam) << std::endl;
-
-		if (Device)
-		{
-			int newWidth = LOWORD(lparam);
-			int newHeight = HIWORD(lparam);
-
-			if (newHeight == 0 || newWidth == 0 || (Display->ClientHeight == newHeight && Display->ClientWidth == newWidth))
-			{
-				return 0;
-			}
-
-			Display->ClientHeight = newHeight;
-			Display->ClientWidth = newWidth;
-
-			if (backBuffer != nullptr)
-			{
-				backBuffer->Release(); backBuffer = nullptr;
-			}
-			if (RenderView != nullptr)
-			{
-				RenderView->Release(); RenderView = nullptr;
-			}
-
-			SwapChain1->ResizeBuffers(2, newWidth, newHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
-
-			CreateBackBuffer();
-		}
-
-		return 0;
-	}
-
-	// Check if a key has been pressed on the keyboard.
-	case WM_KEYDOWN:
-	{
-		// If a key is pressed send it to the input object so it can record that state.
-		std::cout << "Key: " << static_cast<unsigned int>(wparam) << std::endl;
-
-		if (static_cast<unsigned int>(wparam) == 27)
-		{
-			PostQuitMessage(0);
-			Exit();
-		}
-		return 0;
-	}
-
-	// Check if a key has been released on the keyboard.
-	case WM_KEYUP:
-	{
-		// If a key is released then send it to the input object so it can unset the state for that key.
-		return 0;
-	}
-
-	// All other messages pass to the message handler in the system class.
-	default:
-	{
-		return DefWindowProc(hwnd, umessage, wparam, lparam);
-	}
-	}
-}
-
 void Game::Initialize()
 {
 	GameComponents.push_back(new DebugRectangleGameComponent(this));
@@ -284,4 +208,82 @@ void Game::CreateBackBuffer()
 	
 	res = Device->CreateRenderTargetView(backBuffer, nullptr, &RenderView);
 	ZCHECK(res);
+}
+
+LRESULT Game::MessageHandler(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
+{
+	inputDevice.MessageHandler(hwnd, umessage, wparam, lparam);
+	
+	switch (umessage)
+	{
+		// Check if the window is being destroyed.
+	case WM_DESTROY:
+	case WM_CLOSE:
+	{
+		PostQuitMessage(0);
+		Exit();
+		return 0;
+	}
+
+	case WM_SIZE:
+	{
+		std::cout << "Width " << LOWORD(lparam) << " Height " << HIWORD(lparam) << std::endl;
+
+		if (Device)
+		{
+			int newWidth = LOWORD(lparam);
+			int newHeight = HIWORD(lparam);
+
+			if (newHeight == 0 || newWidth == 0 || (Display->ClientHeight == newHeight && Display->ClientWidth == newWidth))
+			{
+				return 0;
+			}
+
+			Display->ClientHeight = newHeight;
+			Display->ClientWidth = newWidth;
+
+			if (backBuffer != nullptr)
+			{
+				backBuffer->Release(); backBuffer = nullptr;
+			}
+			if (RenderView != nullptr)
+			{
+				RenderView->Release(); RenderView = nullptr;
+			}
+
+			SwapChain1->ResizeBuffers(2, newWidth, newHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+
+			CreateBackBuffer();
+		}
+
+		return 0;
+	}
+
+	// Check if a key has been pressed on the keyboard.
+	case WM_KEYDOWN:
+	{
+		// If a key is pressed send it to the input object so it can record that state.
+		std::cout << "Key: " << static_cast<unsigned int>(wparam) << std::endl;
+
+		if (static_cast<unsigned int>(wparam) == 27)
+		{
+			PostQuitMessage(0);
+			Exit();
+		}
+		return 0;
+	}
+
+	// Check if a key has been released on the keyboard.
+	case WM_KEYUP:
+	{
+		// If a key is released then send it to the input object so it can unset the state for that key.
+		return 0;
+	}
+
+	// All other messages pass to the message handler in the system class.
+	default:
+	{
+		return DefWindowProc(hwnd, umessage, wparam, lparam);
+	}
+	}
 }

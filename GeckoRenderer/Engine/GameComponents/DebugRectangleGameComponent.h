@@ -1,6 +1,6 @@
 #pragma once
 #include "GameComponent.h"
-#include "pch.h"
+#include "../pch.h"
 
 class DebugRectangleGameComponent :
     public GameComponent

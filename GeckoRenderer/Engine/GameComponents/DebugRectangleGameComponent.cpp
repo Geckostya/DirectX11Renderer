@@ -1,14 +1,13 @@
 #include "DebugRectangleGameComponent.h"
 
 #include "DebugRectangleGameComponent.h"
-#include "pch.h"
-#include "Game.h"
+#include "../Game.h"
 
 void DebugRectangleGameComponent::Initialize()
 {
 	ID3DBlob* vertexBC;
 	ID3DBlob* errorVertexCode;
-	HRESULT res = D3DCompileFromFile(L"MiniTri.fx",
+	HRESULT res = D3DCompileFromFile(L"Engine/Shaders/MiniTri.fx",
 	                             nullptr /*macros*/,
 	                             nullptr /*include*/,
 	                             "VSMain",
@@ -28,7 +27,7 @@ void DebugRectangleGameComponent::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(game->Display->handle, L"MiniTri.fx", L"Missing Shader File", MB_OK);
+			MessageBox(game->Display->handle, L"Engine/Shaders/MiniTri.fx", L"Missing Shader File", MB_OK);
 		}
 
 		exit(1);
@@ -39,7 +38,7 @@ void DebugRectangleGameComponent::Initialize()
 
 	ID3DBlob* pixelBC;
 	ID3DBlob* errorPixelCode;
-	res = D3DCompileFromFile(L"MiniTri.fx", Shader_Macros , nullptr , "PSMain", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &pixelBC, &errorPixelCode);
+	res = D3DCompileFromFile(L"Engine/Shaders/MiniTri.fx", Shader_Macros , nullptr , "PSMain", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &pixelBC, &errorPixelCode);
 
 	if (FAILED(res)) {
 		// If the shader failed to compile it should have written something to the error message.
@@ -51,7 +50,7 @@ void DebugRectangleGameComponent::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(game->Display->handle, L"MiniTri.fx", L"Missing Shader File", MB_OK);
+			MessageBox(game->Display->handle, L"Engine/Shaders/MiniTri.fx", L"Missing Shader File", MB_OK);
 		}
 
 		exit(1);

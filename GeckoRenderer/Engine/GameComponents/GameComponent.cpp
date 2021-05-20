@@ -1,5 +1,5 @@
 #include "GameComponent.h"
-#include "Game.h"
+#include "../Game.h"
 
 GameComponent::GameComponent(Game* game)
 {

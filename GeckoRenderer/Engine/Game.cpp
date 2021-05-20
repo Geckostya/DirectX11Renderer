@@ -1,7 +1,7 @@
 #include "Game.h"
 
 #include "DisplayWin.h"
-#include "DebugRectangleGameComponent.h"
+#include "GameComponents/DebugRectangleGameComponent.h"
 
 
 Game::Game(std::wstring& name)
@@ -83,7 +83,6 @@ void Game::RestoreTargets()
 
 void Game::Initialize()
 {
-	GameComponents.push_back(new DebugRectangleGameComponent(this));
 }
 
 void Game::Update(float deltaTime)

@@ -5,6 +5,7 @@ class Game;
 class GameComponent
 {
 public:
+	virtual ~GameComponent() = default;
 	Game* game;
 
 public:

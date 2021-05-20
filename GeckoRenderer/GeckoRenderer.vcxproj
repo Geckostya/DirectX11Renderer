@@ -163,20 +163,22 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DisplayWin.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameComponent.cpp" />
-    <ClCompile Include="InputDevice.cpp" />
+    <ClCompile Include="Engine\DisplayWin.cpp" />
+    <ClCompile Include="Engine\Game.cpp" />
+    <ClCompile Include="Engine\GameComponents\GameComponent.cpp" />
+    <ClCompile Include="Engine\Input\InputDevice.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="DebugRectangleGameComponent.cpp" />
+    <ClCompile Include="Engine\GameComponents\DebugRectangleGameComponent.cpp" />
+    <ClCompile Include="Engine\GameComponents\GeometryGameComponent.cpp" />
+    <ClCompile Include="SolarSystemGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="MiniTri.fx" />
+    <FxCompile Include="Engine\Shaders\MiniTri.fx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DisplayWin.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="Engine\DisplayWin.h" />
+    <ClInclude Include="Engine\Game.h" />
+    <ClInclude Include="Engine\GameComponents\GameComponent.h" />
     <ClInclude Include="Includes\Audio.h" />
     <ClInclude Include="Includes\BufferHelpers.h" />
     <ClInclude Include="Includes\CommonStates.h" />
@@ -198,9 +200,11 @@
     <ClInclude Include="Includes\VertexTypes.h" />
     <ClInclude Include="Includes\WICTextureLoader.h" />
     <ClInclude Include="Includes\XboxDDSTextureLoader.h" />
-    <ClInclude Include="InputDevice.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="DebugRectangleGameComponent.h" />
+    <ClInclude Include="Engine\Input\InputDevice.h" />
+    <ClInclude Include="Engine\GameComponents\GeometryGameComponent.h" />
+    <ClInclude Include="Engine\pch.h" />
+    <ClInclude Include="Engine\GameComponents\DebugRectangleGameComponent.h" />
+    <ClInclude Include="SolarSystemGame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Includes\SimpleMath.inl" />

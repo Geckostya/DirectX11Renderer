@@ -21,44 +21,50 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="Engine\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponent.cpp">
+    <ClCompile Include="Engine\GameComponents\GameComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayWin.cpp">
+    <ClCompile Include="Engine\DisplayWin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputDevice.cpp">
+    <ClCompile Include="Engine\Input\InputDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DebugRectangleGameComponent.cpp">
+    <ClCompile Include="Engine\GameComponents\DebugRectangleGameComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GameComponents\GeometryGameComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarSystemGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="MiniTri.fx">
+    <FxCompile Include="Engine\Shaders\MiniTri.fx">
       <Filter>Source Files</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="Engine\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameComponent.h">
+    <ClInclude Include="Engine\GameComponents\GameComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DisplayWin.h">
+    <ClInclude Include="Engine\DisplayWin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputDevice.h">
+    <ClInclude Include="Engine\Input\InputDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Engine\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DebugRectangleGameComponent.h">
+    <ClInclude Include="Engine\GameComponents\DebugRectangleGameComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Audio.h">
@@ -123,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="Includes\XboxDDSTextureLoader.h">
       <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameComponents\GeometryGameComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarSystemGame.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

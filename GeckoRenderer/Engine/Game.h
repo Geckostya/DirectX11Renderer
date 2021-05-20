@@ -3,7 +3,7 @@
 #include <chrono>
 
 #include "DisplayWin.h"
-#include "InputDevice.h"
+#include "Input/InputDevice.h"
 #include "pch.h"
 
 class GameComponent;

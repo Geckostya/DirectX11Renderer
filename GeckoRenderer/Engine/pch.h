@@ -24,5 +24,6 @@
 #include <SimpleMath.h>
 #include <chrono>
 #include <thread>
+#include<comdef.h>
 
-#define ZCHECK(exp) if(FAILED(exp)) { printf("Check failed at file: %s at line %i", __FILE__, __LINE__); exit(1); }
+#define ZCHECK(exp) if(FAILED(exp)) { _com_error err(res); LPCTSTR errMsg = err.ErrorMessage(); wprintf(L"%s; ", errMsg); printf("Check failed at file: %s at line %i", __FILE__, __LINE__); exit(1); }

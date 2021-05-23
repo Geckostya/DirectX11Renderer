@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include "DisplayWin.h"
+#include "Camera/FPSCameraController.h"
 #include "GameComponents/DebugRectangleGameComponent.h"
 
 
@@ -15,21 +16,19 @@ Game::~Game()
 	if (Display) delete Display;
 	if (TotalTime) delete TotalTime;
 
-	if (Debug)
-	{
-		Debug->ReportLiveDeviceObjects(D3D11_RLDO_DETAIL);
-	}
-
-	if (Device)
-	{
-		Device->Release();
-	}
+	if (Device) Device->Release();
 
 	for (auto* component : GameComponents)
 	{
 		delete component;
 	}
 	GameComponents.clear();
+
+	if (Camera) delete Camera;
+	if (CameraController) delete CameraController;
+	if (inputDevice) delete inputDevice;
+	
+	if (Debug) Debug->ReportLiveDeviceObjects(D3D11_RLDO_DETAIL);
 }
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
@@ -41,6 +40,8 @@ void Game::Run(int windowWidth, int windowHeight)
 {
 	Display = new DisplayWin(Name, windowWidth, windowHeight, WndProc);
 
+	inputDevice = new InputDevice(Display);
+	
 	PrepareResources();
 
 	Initialize();
@@ -56,8 +57,6 @@ void Game::Run(int windowWidth, int windowHeight)
 	*PrevTime = *StartTime;
 
 	TotalTime = new std::chrono::duration<long>;
-
-	MSG msg = {};
 
 	// Loop until there is a quit message from the window or the user.
 	while (!isExitRequested) {
@@ -83,6 +82,7 @@ void Game::RestoreTargets()
 
 void Game::Initialize()
 {
+	Camera = new CameraMatrix(this);
 }
 
 void Game::Update(float deltaTime)
@@ -211,7 +211,7 @@ void Game::CreateBackBuffer()
 
 LRESULT Game::MessageHandler(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
-	inputDevice.MessageHandler(hwnd, umessage, wparam, lparam);
+	if (inputDevice) inputDevice->MessageHandler(hwnd, umessage, wparam, lparam);
 	
 	switch (umessage)
 	{

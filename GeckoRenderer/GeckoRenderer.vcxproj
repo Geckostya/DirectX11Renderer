@@ -163,9 +163,12 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Camera\CameraMatrix.cpp" />
+    <ClCompile Include="Engine\Camera\FPSCameraController.cpp" />
     <ClCompile Include="Engine\DisplayWin.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameComponents\GameComponent.cpp" />
+    <ClCompile Include="Engine\GameComponents\GridGameComponent.cpp" />
     <ClCompile Include="Engine\Input\InputDevice.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine\GameComponents\DebugRectangleGameComponent.cpp" />
@@ -173,12 +176,26 @@
     <ClCompile Include="SolarSystemGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Engine\Shaders\MiniTri.fx" />
+    <Content Include="Engine\Shaders\Lines.fx">
+      <ObjectFileOutput>C:\Users\machine\Documents\Projects\DirectX11Renderer\x64\Debug\%(Filename).cso</ObjectFileOutput>
+      <TrackerLogDirectory>x64\Debug\GeckoRenderer.tlog\</TrackerLogDirectory>
+      <EntryPointName>VSMain</EntryPointName>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ShaderModel>4.0_level_9_3</ShaderModel>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <DisableOptimizations>true</DisableOptimizations>
+      <EnableDebuggingInformation>true</EnableDebuggingInformation>
+    </Content>
+    <Content Include="Engine\Shaders\MiniTri.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Camera\CameraController.h" />
+    <ClInclude Include="Engine\Camera\CameraMatrix.h" />
+    <ClInclude Include="Engine\Camera\FPSCameraController.h" />
     <ClInclude Include="Engine\DisplayWin.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameComponents\GameComponent.h" />
+    <ClInclude Include="Engine\GameComponents\GridGameComponent.h" />
     <ClInclude Include="Includes\Audio.h" />
     <ClInclude Include="Includes\BufferHelpers.h" />
     <ClInclude Include="Includes\CommonStates.h" />
@@ -204,6 +221,7 @@
     <ClInclude Include="Engine\GameComponents\GeometryGameComponent.h" />
     <ClInclude Include="Engine\pch.h" />
     <ClInclude Include="Engine\GameComponents\DebugRectangleGameComponent.h" />
+    <ClInclude Include="Engine\Graphics\Shader.h" />
     <ClInclude Include="SolarSystemGame.h" />
   </ItemGroup>
   <ItemGroup>

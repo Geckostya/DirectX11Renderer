@@ -5,6 +5,6 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevInstance, 
 {
 	std::wstring name(L"Game");
 	SolarSystemGame game(name);
-	game.Run(800, 800);
+	game.Run(1280, 800);
 	return 0;
 }

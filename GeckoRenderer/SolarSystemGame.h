@@ -12,5 +12,6 @@ public:
 
 protected:
 	void Initialize() override;
+	void Update(float deltaTime) override;
 };
 

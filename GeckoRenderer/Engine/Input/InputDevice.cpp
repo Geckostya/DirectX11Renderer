@@ -1,5 +1,7 @@
 #include "InputDevice.h"
 
+#include "../DisplayWin.h"
+
 
 DirectX::Keyboard& InputDevice::getKeyboard()
 {
@@ -9,6 +11,11 @@ DirectX::Keyboard& InputDevice::getKeyboard()
 DirectX::Mouse& InputDevice::getMouse()
 {
 	return DirectX::Mouse::Get();
+}
+
+InputDevice::InputDevice(DisplayWin* display)
+{
+	getMouse().SetWindow(display->handle);
 }
 
 bool InputDevice::IsKeyDown(DirectX::Keyboard::Keys key)

@@ -1,24 +1,22 @@
 #pragma once
 #include "GameComponent.h"
 #include "../pch.h"
+#include "../Graphics/Shader.h"
 
 class DebugRectangleGameComponent :
     public GameComponent
 {
-private:
-	ID3D11VertexShader* vertexShader;
-	ID3D11PixelShader* pixelShader;
-	ID3D11InputLayout* layout;
-	ID3D11RasterizerState* rastState;
-	ID3D11Buffer* verticesBuffer;
-	ID3D11Buffer* indicesBuffer;
+	VertexShader* vertexShader = nullptr;
+	PixelShader* pixelShader = nullptr;
+	ID3D11InputLayout* layout = nullptr;
+	ID3D11RasterizerState* rastState = nullptr;
+	ID3D11Buffer* verticesBuffer = nullptr;
+	ID3D11Buffer* indicesBuffer = nullptr;
 
 public:	
 	DebugRectangleGameComponent(Game* game);
 	
 	virtual void Initialize() override;
-	virtual void Reload() override;
-	virtual void Update(float deltaTime) override;
 	virtual void Draw(float deltaTime) override;
 	virtual void DestroyResources() override;
 };

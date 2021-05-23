@@ -14,6 +14,8 @@
 #include <dxgi1_2.h>
 #endif
 
+#include <d3d.h>
+
 #include <cassert>
 #include <cstddef>
 #include <cstring>

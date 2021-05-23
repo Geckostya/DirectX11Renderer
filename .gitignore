@@ -37,4 +37,5 @@
 *.pdb
 *.user
 .vs
+.idea
 Debug

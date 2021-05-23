@@ -33,13 +33,13 @@ DisplayWin::DisplayWin(std::wstring& windowName, int width, int height, WNDPROC 
 	auto screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
 	// If windowed then set it to 800x800 resolution.
-	screenWidth = 800;
-	screenHeight = 800;
+	screenWidth = width;
+	screenHeight = height;
 
 	// Place the window in the middle of the screen.
 	posX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;
 	posY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
-
+	
 	RECT windowRect = { 0, 0, static_cast<LONG>(screenWidth), static_cast<LONG>(screenHeight) };
 	AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 

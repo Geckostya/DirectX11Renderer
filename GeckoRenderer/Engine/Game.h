@@ -26,7 +26,7 @@ public:
 	DisplayWin* Display = nullptr;
 	std::chrono::time_point<std::chrono::steady_clock>* StartTime = nullptr;
 	std::chrono::time_point<std::chrono::steady_clock>* PrevTime = nullptr;
-	std::chrono::duration<long>* TotalTime = nullptr;
+	std::chrono::duration<long, std::ratio<1, 1000000>>* TotalTime = nullptr;
 	InputDevice* inputDevice;
 
 public:
@@ -64,6 +64,8 @@ protected:
 	void PrepareFrame();
 	void EndFrame();
 	void DestroyResources();
+
+	float getTime() const;
 
 private:
 	void CreateBackBuffer();

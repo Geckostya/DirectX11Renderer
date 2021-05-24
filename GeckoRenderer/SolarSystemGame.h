@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Game.h"
+#include "Engine/GameComponents/GeometryGameComponent.h"
 
 class SolarSystemGame
 	: public Game
@@ -13,5 +14,8 @@ public:
 protected:
 	void Initialize() override;
 	void Update(float deltaTime) override;
+private:
+	GeometryGameComponent* cube1;
+	GeometryGameComponent* cube2;
 };
 

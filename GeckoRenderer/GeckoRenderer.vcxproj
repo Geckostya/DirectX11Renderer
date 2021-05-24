@@ -169,6 +169,8 @@
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameComponents\GameComponent.cpp" />
     <ClCompile Include="Engine\GameComponents\GridGameComponent.cpp" />
+    <ClCompile Include="Engine\GameComponents\HierarchyComponent.cpp" />
+    <ClCompile Include="Engine\GameComponents\TransformComponent.cpp" />
     <ClCompile Include="Engine\Input\InputDevice.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine\GameComponents\DebugRectangleGameComponent.cpp" />
@@ -196,6 +198,9 @@
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameComponents\GameComponent.h" />
     <ClInclude Include="Engine\GameComponents\GridGameComponent.h" />
+    <ClInclude Include="Engine\GameComponents\HierarchyComponent.h" />
+    <ClInclude Include="Engine\GameComponents\IHierarchical.h" />
+    <ClInclude Include="Engine\GameComponents\TransformComponent.h" />
     <ClInclude Include="Includes\Audio.h" />
     <ClInclude Include="Includes\BufferHelpers.h" />
     <ClInclude Include="Includes\CommonStates.h" />

@@ -2,10 +2,21 @@
 
 #include "../Game.h"
 
-GeometryGameComponent::GeometryGameComponent(Game* game, std::unique_ptr<DirectX::GeometricPrimitive>&& geometry)
-: GameComponent(game),
-  Geometry(std::move(geometry))
+GeometryGameComponent::GeometryGameComponent(Game* game, std::unique_ptr<DirectX::GeometricPrimitive>&& geometry,
+  IHierarchical* parent)
+  : GameComponent(game),
+    Geometry(std::move(geometry)),
+    tmComponent(new TransformComponent(this)),
+    hierarchyComponent(new HierarchyComponent(this))
 {
+    if (parent) parent->GetHierarchyComponent()->AddChild(this);
+}
+
+GeometryGameComponent::~GeometryGameComponent()
+{
+  delete tmComponent;
+  delete hierarchyComponent;
+  GameComponent::~GameComponent();
 }
 
 void GeometryGameComponent::Initialize()
@@ -22,12 +33,22 @@ void GeometryGameComponent::Update(float deltaTime)
 
 void GeometryGameComponent::Draw(float deltaTime)
 {
-  auto view = game->Camera->getView();
-  auto projection = game->Camera->getProjection();
+  const auto view = game->Camera->getView();
+  const auto projection= game->Camera->getProjection();
   
-  Geometry->Draw(DirectX::SimpleMath::Matrix::Identity, view, projection);
+  Geometry->Draw(tmComponent->GetRootTm(), view, projection);
 }
 
 void GeometryGameComponent::DestroyResources()
 {
+}
+
+TransformComponent* GeometryGameComponent::GetTransformComponent() const
+{
+  return tmComponent;
+}
+
+HierarchyComponent* GeometryGameComponent::GetHierarchyComponent() const
+{
+  return hierarchyComponent;
 }

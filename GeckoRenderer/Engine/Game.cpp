@@ -56,7 +56,7 @@ void Game::Run(int windowWidth, int windowHeight)
 	*StartTime = std::chrono::steady_clock::now();
 	*PrevTime = *StartTime;
 
-	TotalTime = new std::chrono::duration<long>;
+	TotalTime = new std::chrono::duration<long, std::ratio<1, 1000000>>;
 
 	// Loop until there is a quit message from the window or the user.
 	while (!isExitRequested) {
@@ -153,7 +153,7 @@ void Game::UpdateInternal()
 	auto curTime = std::chrono::steady_clock::now();
 	float deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - *PrevTime).count() / 1000000.0f;
 	*PrevTime = curTime;
-	*TotalTime = std::chrono::duration_cast<std::chrono::seconds>(curTime - *StartTime);
+	*TotalTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - *StartTime);
 
 	PrepareFrame();
 
@@ -207,6 +207,12 @@ void Game::CreateBackBuffer()
 	
 	res = Device->CreateRenderTargetView(backBuffer, nullptr, &RenderView);
 	ZCHECK(res);
+}
+
+
+float Game::getTime() const
+{
+	return std::chrono::duration_cast<std::chrono::microseconds>(*TotalTime).count() / 1000000.0f;
 }
 
 LRESULT Game::MessageHandler(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)

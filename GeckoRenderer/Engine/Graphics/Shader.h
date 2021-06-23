@@ -22,7 +22,7 @@ protected:
 			includes,
 			entrypoint,
 			pTarget,
-			D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION | D3DCOMPILE_PACK_MATRIX_ROW_MAJOR,
+			D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
 			0,
 			&byteCodes,
 			&errors);

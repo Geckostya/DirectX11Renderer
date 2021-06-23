@@ -95,7 +95,7 @@ void GridGameComponent::Initialize()
 
 void GridGameComponent::Update(float deltaTime)
 {
-    mvpBuffer.SetData(game->Context, game->Camera->Get());
+    mvpBuffer.SetData(game->Context, game->Camera->Get().Transpose());
 }
 
 void GridGameComponent::Draw(float deltaTime)

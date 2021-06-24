@@ -177,13 +177,14 @@ void Game::PrepareFrame()
 	viewport.TopLeftY = 0;
 	viewport.MinDepth = 0;
 	viewport.MaxDepth = 1.0f;
-
-	Context->OMSetRenderTargets(1, &RenderView, nullptr);
+ 
+	Context->OMSetRenderTargets(1, &RenderView, DepthView);
 
 	Context->RSSetViewports(1, &viewport);
 	Context->RSSetState(RastState);
 	
 	Context->ClearRenderTargetView(RenderView, DirectX::SimpleMath::Color(0, 0, 0, 1));
+	Context->ClearDepthStencilView(DepthView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void Game::EndFrame()
@@ -202,10 +203,33 @@ void Game::DestroyResources()
 
 void Game::CreateBackBuffer()
 {
+	if (backBuffer != nullptr) backBuffer->Release();
+	if (RenderView != nullptr) RenderView->Release();
+	if (depthBuffer != nullptr) depthBuffer->Release();
+	if (DepthView != nullptr) DepthView->Release();
+	
 	HRESULT res = SwapChain->GetBuffer(0, IID_ID3D11Texture2D, (void**)&backBuffer);
 	ZCHECK(res);
 	
 	res = Device->CreateRenderTargetView(backBuffer, nullptr, &RenderView);
+	ZCHECK(res);
+	
+	D3D11_TEXTURE2D_DESC depthTexDesc = {};
+	depthTexDesc.ArraySize = 1;
+	depthTexDesc.MipLevels = 1;
+	depthTexDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	depthTexDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	depthTexDesc.CPUAccessFlags = 0;
+	depthTexDesc.MiscFlags = 0;
+	depthTexDesc.Usage = D3D11_USAGE_DEFAULT;
+	depthTexDesc.Width = Display->ClientWidth;
+	depthTexDesc.Height = Display->ClientHeight;
+	depthTexDesc.SampleDesc = {1, 0};
+
+	res = Device->CreateTexture2D(&depthTexDesc, nullptr, &depthBuffer);
+	ZCHECK(res);
+
+	res = Device->CreateDepthStencilView(depthBuffer, nullptr, &DepthView);
 	ZCHECK(res);
 }
 

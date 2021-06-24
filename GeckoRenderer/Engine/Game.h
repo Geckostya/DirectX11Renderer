@@ -35,10 +35,12 @@ public:
 	IDXGISwapChain* SwapChain = nullptr;
 	IDXGISwapChain1* SwapChain1 = nullptr;
 	ID3D11RenderTargetView* RenderView = nullptr;
+	ID3D11DepthStencilView* DepthView = nullptr;
 	ID3DUserDefinedAnnotation* DebugAnnotation = nullptr;
 	ID3D11Debug* Debug = nullptr;
 	ID3D11RasterizerState* RastState = nullptr;
 	ID3D11Texture2D* backBuffer = nullptr;
+	ID3D11Texture2D* depthBuffer = nullptr;
 
 
 public:
